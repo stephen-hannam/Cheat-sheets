@@ -1,0 +1,122 @@
+{
+	"name": "Nmap Cheatsheet",
+	"description": "Nmap Cheatsheet",
+	"author": "Stephen Hannam",
+	"email": "stenam7@gmail.com",
+	"repository": "",
+	"version": "1.0",
+	"sections": {
+		"Nmap Target Selection": {
+			"Scan a single IP": {
+				"description": "Default scan 1000 TCP Ports with Host Discovery",
+				"code": "nmap 192.168.1.1"
+			}
+			"Scan a host": {
+				"description": "Default scan 1000 TCP Ports with Host Discovery",
+				"code": "nmap www.testhostname.com"
+			}
+			"Scan a range of IP addresses": {
+				"description": "zB: scan host addresses 1 to 20",
+				"code": "nmap 192.168.1.1-20"
+			}
+			"Scan a subnet": {
+				"description": "CIDR notation - Default scan 1000 TCP Ports with Host Discovery",
+				"code": "nmap 192.168.1.0/24"
+			}
+			"Scan targets from a text file": {
+				"description": "Default scan 1000 TCP Ports with Host Discovery",
+				"code": "nmap -iL list-of-ips.txt"
+			}
+		}
+		"Nmap Port Selection": {
+			"Scan a single port": {
+				"description": "",
+				"code": "nmap -p 22 192.168.1.1"
+			}
+			"Scan a range of ports": {
+				"description": "",
+				"code": "nmap -p 1-100 192.168.1.1"
+			}
+			"Scan 100 most common ports": {
+				"description": "(F)ast flag",
+				"code": "nmap -F 192.168.1.1"
+			}
+			"Scan all 65535 ports": {
+				"description": "slow",
+				"code": "nmap -p- 192.168.1.1"
+			}
+		}
+		"Nmap Port Scan types": {
+			"Scan using TCP connect": {
+				"description": "slower; sets up full TCP connection",
+				"code": "nmap -sT 192.168.1.1"
+			}
+			"Scan using TCP SYN scan (default)": {
+				"description": "privileged access required",
+				"code": "nmap -sS 192.168.1.1"
+			}
+			"Scan UDP Ports": {
+				"description": "",
+				"code": "nmap -sU -p 123,161,162 192.168.1.1"
+			}
+			"Scan selected ports - ignore discovery": {
+				"description": "Does NOT rely on PING, which many firewalls or hosts will not respond to",
+				"code": "nmap -Pn -F 192.168.1.1"
+			}
+		}
+		"Service and OS Detection": {
+			"Detect OS and Services": {
+				"description": "",
+				"code": "nmap -A 192.168.1.1"
+			}
+			"Standard service detection": {
+				"description": "",
+				"code": "nmap -sV 192.168.1.1"
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+		}
+		"Nmap Output Formats": {
+			"": {
+				"description": "",
+				"code": ""
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+		}
+		"NSE Scripts": {
+			"": {
+				"description": "",
+				"code": ""
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+			"": {
+				"description": "",
+				"code": ""
+			}
+		}
+	}
+}
