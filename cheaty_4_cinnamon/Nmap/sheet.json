@@ -1,12 +1,54 @@
 {
-	"name": "Nmap Cheatsheet",
-	"description": "Nmap Cheatsheet",
+	"name": "Nmap",
+	"description": "Nmap",
 	"author": "Stephen Hannam",
 	"email": "stenam7@gmail.com",
 	"repository": "http://fipo.co",
 	"version": "1.0",
 	"sections": {
-		"Nmap Target Selection": {
+		"1. Basic Scanning Techniques": {
+			"Single target": {
+				"description": "",
+				"code": "nmap [target]"
+			},
+			"Multiple targets": {
+				"description": "",
+				"code": "nmap [target1,target2,etc]"
+			},
+			"List of targets": {
+				"description": "",
+				"code": "nmap -iL [list.txt]"
+			},
+			"Range of hosts": {
+				"description": "",
+				"code": "nmap [range of IP addresses]"
+			},
+			"Entire subnet": {
+				"description": "",
+				"code": "nmap [IP address/cdir]"
+			},
+			"Random hosts": {
+				"description": "",
+				"code": "nmap -iR [number]"
+			},
+			"Excluding targets": {
+				"description": "",
+				"code": "nmap [targets] --exclude [targets]"
+			},
+			"Excluding targets using a list": {
+				"description": "",
+				"code": "nmap [targets] --excludefile [list.txt]"
+			},
+			"Aggressive": {
+				"description": "",
+				"code": "nmap -A [target]"
+			},
+			"IPv6": {
+				"description": "",
+				"code": "nmap -6 [target]"
+			}
+		},
+		"2. Nmap Target Selection": {
 			"Scan a single IP": {
 				"description": "Default scan 1000 TCP Ports with Host Discovery",
 				"code": "nmap 192.168.1.1"
@@ -23,18 +65,18 @@
 				"description": "CIDR notation - Default scan 1000 TCP Ports with Host Discovery",
 				"code": "nmap 192.168.1.0/24"
 			},
-			"Scan targets from a text file": {
+			"Scan targets from a  file": {
 				"description": "Default scan 1000 TCP Ports with Host Discovery",
 				"code": "nmap -iL list-of-ips.txt"
 			}
 		},
-		"Nmap Port Selection": {
+		"2. Nmap Port Selection": {
 			"Scan a single port": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -p 22 192.168.1.1"
 			},
 			"Scan a range of ports": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -p 1-100 192.168.1.1"
 			},
 			"Scan 100 most common ports": {
@@ -46,7 +88,7 @@
 				"code": "nmap -p- 192.168.1.1"
 			}
 		},
-		"Nmap Port Scan types": {
+		"2. Nmap Port Scan types": {
 			"Scan using TCP connect": {
 				"description": "slower; sets up full TCP connection",
 				"code": "nmap -sT 192.168.1.1"
@@ -56,7 +98,7 @@
 				"code": "nmap -sS 192.168.1.1"
 			},
 			"Scan UDP Ports": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -sU -p 123,161,162 192.168.1.1"
 			},
 			"Scan selected ports - ignore discovery": {
@@ -64,49 +106,49 @@
 				"code": "nmap -Pn -F 192.168.1.1"
 			}
 		},
-		"Service and OS Detection": {
+		"2. Service and OS Detection": {
 			"Detect OS and Services": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -A 192.168.1.1"
 			},
 			"Standard service detection": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -sV 192.168.1.1"
 			},
 			"More aggressive service detection": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -sV --version-intensity 5 192.168.1.1"
 			},
 			"Lighter banner grabbing detection": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -sV --version-intensity 0 192.168.1.1"
 			}
 		},
-		"Nmap Output Formats": {
+		"2. Nmap Output Formats": {
 			"Save default output to file": {
 				"description": "-oN allows monitoring in terminal while also being saved during scan",
 				"code": "nmap -oN outputfile.txt 192.168.1.1"
 			},
 			"Save results as XML": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -oX outputfile.xml 192.168.1.1"
 			},
 			"Save results in a format for GREP": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -oG outputfile.txt 192.168.1.1"
 			},
 			"Save in all formats": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -oA outputfile 192.168.1.1"
 			}
 		},
-		"NSE Scripts": {
+		"2. NSE Scripts": {
 			"Scan using default safe scripts": {
-				"description": "text",
+				"description": "",
 				"code": "nmap -sV -sC 192.168.1.1"
 			},
 			"Get help for a script": {
-				"description": "text",
+				"description": "",
 				"code": "nmap --script-help=<script_name>"
 			},
 			"Scan using a specific NSE script": {
@@ -116,6 +158,32 @@
 			"Scan with a set of scripts": {
 				"description": "just do base-name globbing",
 				"code": "nmap -sV --script=smb* 192.168.1.1"
+			}
+		},
+		"2. Scan for DDoS reflection UDP services vulnerability": {
+			"Scan for UDP DDoS reflectors": {
+				"description": "",
+				"code": "nmap -sU -A -PN -n -pU:19,53,123,161 --script=ntp-monlist,dns-recursion,snmp-sysdescr 192.168.1.0/24"
+			}
+		},
+		"2. HTTP Service Information": {
+			"Gather page titles from HTTP services": {
+				"description": "",
+				"code": "nmap --script=http-title 192.168.1.0/24"
+			},
+			"Get HTTP headers of web services": {
+				"description": "",
+				"code": "nmap --script=http-headers 192.168.1.0/24"
+			},
+			"Find web apps from known paths": {
+				"description": "",
+				"code": "nmap --script=http-enum 192.168.1.0/24"
+			}
+		},
+		"2. IP Address information": {
+			"Find information about IP address": {
+				"description": "",
+				"code": "nmap --script=asn-query,whois*,ip-geolocation-maxmind 192.168.1.0/24"
 			}
 		}
 	}
